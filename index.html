@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mapa Conceptual | Violencia Política 2022</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#07101f;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* PORTADA WEB */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 20px;
+
+    background:
+    radial-gradient(circle at 20% 20%, #18365d 0%, transparent 35%),
+    radial-gradient(circle at 80% 80%, #501d54 0%, transparent 35%),
+    #07101f;
+}
+
+.hero-contenido{
+    max-width:950px;
+}
+
+.materia{
+    display:inline-block;
+    border:1px solid #61e7dc;
+    color:#61e7dc;
+    padding:9px 20px;
+    border-radius:30px;
+    letter-spacing:2px;
+    font-size:13px;
+    margin-bottom:30px;
+}
+
+h1{
+    font-size:clamp(45px,8vw,90px);
+    line-height:1;
+}
+
+h1 span{
+    color:#ff6677;
+}
+
+.hero p{
+    max-width:750px;
+    margin:30px auto;
+    font-size:20px;
+    line-height:1.7;
+    color:#cbd5e1;
+}
+
+.boton{
+    display:inline-block;
+    padding:16px 30px;
+    margin-top:10px;
+    border-radius:40px;
+    background:linear-gradient(135deg,#ff6677,#ffc36b);
+    color:#111827;
+    font-weight:bold;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.boton:hover{
+    transform:translateY(-5px);
+}
+
+/* MAPA */
+
+main{
+    width:94%;
+    max-width:1350px;
+    margin:auto;
+    padding:80px 0;
+}
+
+.intro{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.intro h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.intro p{
+    color:#94a3b8;
+    max-width:750px;
+    margin:auto;
+    line-height:1.7;
+}
+
+/* NODO CENTRAL */
+
+.central{
+    max-width:760px;
+    margin:auto;
+    padding:38px;
+    text-align:center;
+    border:2px solid #ff6677;
+    border-radius:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,102,119,.20),
+        rgba(255,195,107,.08)
+    );
+
+    box-shadow:0 0 50px rgba(255,102,119,.15);
+}
+
+.central .icono{
+    font-size:50px;
+}
+
+.central h2{
+    font-size:32px;
+    margin:15px;
+}
+
+.central p{
+    color:#e2e8f0;
+    line-height:1.8;
+}
+
+/* FLECHAS */
+
+.flecha{
+    text-align:center;
+    padding:18px 0;
+}
+
+.linea{
+    width:3px;
+    height:45px;
+    background:linear-gradient(#ff6677,#61e7dc);
+    margin:auto;
+}
+
+.palabra-enlace{
+    display:inline-block;
+    margin:10px;
+    padding:7px 16px;
+    border-radius:25px;
+    background:#10253b;
+    border:1px solid #61e7dc;
+    color:#61e7dc;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.punta{
+    font-size:22px;
+    color:#61e7dc;
+}
+
+/* RAMIFICACIÓN */
+
+.ramas{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.nodo{
+    padding:30px;
+    border-radius:22px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.15);
+    transition:.3s;
+    position:relative;
+}
+
+.nodo:hover{
+    transform:translateY(-7px);
+    border-color:#61e7dc;
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.nodo .icono{
+    font-size:38px;
+    margin-bottom:15px;
+}
+
+.nodo h3{
+    color:#61e7dc;
+    font-size:23px;
+    margin-bottom:15px;
+}
+
+.nodo p{
+    color:#cbd5e1;
+    line-height:1.65;
+}
+
+.nodo ul{
+    margin-top:15px;
+    padding-left:20px;
+}
+
+.nodo li{
+    margin:9px 0;
+    line-height:1.5;
+    color:#e2e8f0;
+}
+
+/* SEGUNDO NIVEL */
+
+.nivel{
+    margin-top:20px;
+}
+
+.dos-columnas{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+/* CONSECUENCIAS */
+
+.consecuencias{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.mini{
+    padding:25px;
+    text-align:center;
+    border-radius:18px;
+    background:#0e1c30;
+    border:1px solid #334155;
+}
+
+.mini h4{
+    color:#ffc36b;
+    margin:12px 0;
+    font-size:19px;
+}
+
+.mini p{
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+/* RESPUESTA FINAL */
+
+.respuesta{
+    max-width:950px;
+    margin:auto;
+    padding:45px;
+    text-align:center;
+    border-radius:25px;
+    border:2px solid #61e7dc;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(97,231,220,.13),
+        rgba(80,29,84,.30)
+    );
+}
+
+.respuesta h2{
+    color:#61e7dc;
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+.respuesta p{
+    line-height:1.8;
+    color:#e2e8f0;
+    font-size:18px;
+}
+
+/* CONCLUSIÓN */
+
+.conclusion{
+    margin-top:80px;
+    text-align:center;
+    padding:50px 30px;
+    border-top:1px solid #334155;
+}
+
+.conclusion h2{
+    font-size:35px;
+    margin-bottom:20px;
+}
+
+.conclusion p{
+    max-width:900px;
+    margin:auto;
+    color:#cbd5e1;
+    line-height:1.9;
+    font-size:18px;
+}
+
+/* FUENTE */
+
+.fuente{
+    margin-top:50px;
+    padding:25px;
+    background:rgba(255,255,255,.04);
+    border-left:4px solid #ffc36b;
+    border-radius:10px;
+}
+
+.fuente h3{
+    color:#ffc36b;
+    margin-bottom:12px;
+}
+
+.fuente p{
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    background:#040914;
+    color:#94a3b8;
+    line-height:1.8;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+    .ramas,
+    .consecuencias{
+        grid-template-columns:1fr;
+    }
+
+    .dos-columnas{
+        grid-template-columns:1fr;
+    }
+
+    .intro h2{
+        font-size:32px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PORTADA -->
+
+<header class="hero">
+
+<div class="hero-contenido">
+
+<span class="materia">
+ESTADO POLÍTICO ADMINISTRATIVA
+</span>
+
+<h1>
+Cuando participar
+<span>se convierte en riesgo</span>
+</h1>
+
+<p>
+Mapa conceptual sobre las experiencias de campaña
+y la violencia política en las candidaturas al
+Congreso de Colombia durante las elecciones de 2022.
+</p>
+
+<a href="#mapa" class="boton">
+Explorar el mapa conceptual ↓
+</a>
+
+</div>
+
+</header>
+
+
+<main id="mapa">
+
+<!-- INTRODUCCIÓN -->
+
+<section class="intro">
+
+<h2>Una democracia bajo presión</h2>
+
+<p>
+El mapa parte de un concepto central y establece relaciones
+entre sus manifestaciones, las personas afectadas, los escenarios
+donde ocurre, sus consecuencias y las respuestas necesarias.
+</p>
+
+</section>
+
+
+<!-- CONCEPTO CENTRAL -->
+
+<section class="central">
+
+<div class="icono">⚖️</div>
+
+<h2>VIOLENCIA POLÍTICA</h2>
+
+<p>
+Comprende acciones y comportamientos que buscan intimidar,
+obstaculizar, limitar o impedir la participación política
+y el ejercicio libre de los derechos de quienes intervienen
+en una contienda electoral.
+</p>
+
+</section>
+
+
+<!-- CONECTOR -->
+
+<div class="flecha">
+
+<div class="linea"></div>
+
+<span class="palabra-enlace">
+SE MANIFIESTA MEDIANTE
+</span>
+
+<div class="punta">▼</div>
+
+</div>
+
+
+<!-- TIPOS -->
+
+<section class="ramas">
+
+<article class="nodo">
+
+<div class="icono">✋</div>
+
+<h3>Violencia directa</h3>
+
+<p>
+Comprende agresiones que amenazan la seguridad y el bienestar
+de las candidaturas.
+</p>
+
+<ul>
+<li>Agresiones físicas.</li>
+<li>Amenazas.</li>
+<li>Intimidaciones.</li>
+<li>Hostigamientos.</li>
+</ul>
+
+</article>
+
+
+<article class="nodo">
+
+<div class="icono">🧠</div>
+
+<h3>Violencia psicológica y simbólica</h3>
+
+<p>
+Busca afectar la reputación, la dignidad o la capacidad
+de participación de una persona.
+</p>
+
+<ul>
+<li>Humillaciones.</li>
+<li>Desprestigio.</li>
+<li>Estereotipos.</li>
+<li>Mensajes discriminatorios.</li>
+</ul>
+
+</article>
+
+
+<article class="nodo">
+
+<div class="icono">📱</div>
+
+<h3>Violencia digital</h3>
+
+<p>
+Traslada las agresiones al entorno de las redes sociales
+y otras plataformas digitales.
+</p>
+
+<ul>
+<li>Ciberacoso.</li>
+<li>Amenazas en línea.</li>
+<li>Desinformación.</li>
+<li>Ataques contra la imagen.</li>
+</ul>
+
+</article>
+
+</section>
+
+
+<!-- CONECTOR -->
+
+<div class="flecha">
+
+<div class="linea"></div>
+
+<span class="palabra-enlace">
+AFECTA DE FORMA DIFERENCIADA A
+</span>
+
+<div class="punta">▼</div>
+
+</div>
+
+
+<!-- GRUPOS -->
+
+<section class="dos-columnas nivel">
+
+<article class="nodo">
+
+<div class="icono">👩🏽‍⚖️</div>
+
+<h3>Mujeres candidatas</h3>
+
+<p>
+Pueden enfrentar formas particulares de violencia relacionadas
+con estereotipos de género, ataques personales y cuestionamientos
+que buscan reducir o deslegitimar su participación política.
+</p>
+
+</article>
+
+
+<article class="nodo">
+
+<div class="icono">🌎</div>
+
+<h3>Grupos y territorios diversos</h3>
+
+<p>
+La experiencia de violencia también puede estar relacionada
+con la pertenencia étnica, las condiciones territoriales
+y otras situaciones de vulnerabilidad.
+</p>
+
+<ul>
+<li>Poblaciones afrodescendientes.</li>
+<li>Pueblos indígenas.</li>
+<li>Grupos históricamente vulnerables.</li>
+<li>Candidaturas en territorios de riesgo.</li>
+</ul>
+
+</article>
+
+</section>
+
+
+<!-- CONECTOR -->
+
+<div class="flecha">
+
+<div class="linea"></div>
+
+<span class="palabra-enlace">
+OCURRE EN ESCENARIOS COMO
+</span>
+
+<div class="punta">▼</div>
+
+</div>
+
+
+<section class="ramas">
+
+<article class="nodo">
+
+<div class="icono">🏛️</div>
+
+<h3>Escenario político</h3>
+
+<p>
+La competencia electoral puede convertirse en un espacio
+de presión, intimidación y exclusión.
+</p>
+
+</article>
+
+
+<article class="nodo">
+
+<div class="icono">📢</div>
+
+<h3>Campaña electoral</h3>
+
+<p>
+Los actos públicos, recorridos y actividades de campaña
+pueden exponer a las candidaturas a distintas formas de riesgo.
+</p>
+
+</article>
+
+
+<article class="nodo">
+
+<div class="icono">🌐</div>
+
+<h3>Entorno digital</h3>
+
+<p>
+Las redes sociales amplían la comunicación política,
+pero también pueden facilitar ataques y hostigamientos.
+</p>
+
+</article>
+
+</section>
+
+
+<!-- CONECTOR -->
+
+<div class="flecha">
+
+<div class="linea"></div>
+
+<span class="palabra-enlace">
+PRODUCE CONSECUENCIAS EN
+</span>
+
+<div class="punta">▼</div>
+
+</div>
+
+
+<section class="consecuencias">
+
+<div class="mini">
+
+<div class="icono">🧍</div>
+
+<h4>La persona</h4>
+
+<p>
+Miedo, presión emocional, inseguridad y afectaciones
+en el bienestar de las candidaturas.
+</p>
+
+</div>
+
+
+<div class="mini">
+
+<div class="icono">🗳️</div>
+
+<h4>La participación</h4>
+
+<p>
+Desmotivación, limitaciones para hacer campaña
+y desigualdad en la competencia electoral.
+</p>
+
+</div>
+
+
+<div class="mini">
+
+<div class="icono">⚖️</div>
+
+<h4>La democracia</h4>
+
+<p>
+Menor pluralidad, exclusión de voces y debilitamiento
+de la participación política libre.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CONECTOR -->
+
+<div class="flecha">
+
+<div class="linea"></div>
+
+<span class="palabra-enlace">
+POR LO TANTO, EXIGE
+</span>
+
+<div class="punta">▼</div>
+
+</div>
+
+
+<!-- RESPUESTA -->
+
+<section class="respuesta">
+
+<h2>🛡️ Prevención, protección y garantías</h2>
+
+<p>
+Enfrentar la violencia política requiere fortalecer la protección
+de las candidaturas, prevenir las agresiones, promover condiciones
+de igualdad, establecer respuestas institucionales y garantizar
+campañas electorales más libres, seguras e incluyentes.
+</p>
+
+</section>
+
+
+<!-- CONCLUSIÓN -->
+
+<section class="conclusion">
+
+<h2>En Conclusión/h2>
+
+<p>
+La violencia política no afecta únicamente a quien recibe una
+agresión. Cuando una candidatura es intimidada, silenciada o
+excluida, también se limita la posibilidad de que la ciudadanía
+elija entre voces diversas. Por ello, prevenir la violencia
+política significa proteger la participación, la igualdad
+electoral y la democracia.
+</p>
+
+</section>
+
+
+<!-- FUENTE -->
+
+<section class="fuente">
+
+<h3>Fuente de análisis</h3>
+
+<p>
+Mapa conceptual elaborado a partir del documento de estudio
+sobre experiencias de campaña y violencia política en las
+candidaturas al Congreso de Colombia durante las elecciones
+de 2022, indicado en los lineamientos de la actividad académica.
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<strong>Corporación Unificada Nacional de Educación Superior – CUN</strong>
+
+<br>
+
+Programa de Administración Pública
+
+<br>
+
+Asignatura: Estado Político Administrativa
+
+<br><br>
+
+<strong>Integrantes:</strong>
+
+<br>
+
+Miguel Angel Rodriguez Londoño
+
+<br><br>
+
+2026
+
+</footer>
+
+</body>
+</html>
